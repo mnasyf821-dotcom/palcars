@@ -1,0 +1,218 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@custom-variant dark (&:is(.dark *));
+
+/*
+==========================================================================
+【AI HANDOVER NOTE】
+1. DESIGN PHILOSOPHY:
+   - The 'Levantine Velocity' system bridges modern automotive precision with Palestinian market trust. It utilizes an 'Atmosphere-First' approach where the UI recedes to prioritize high-quality vehicle imagery.
+   - Visual Style: 'Modular Physicality'. Elements use subtle rim-lighting (via border-colors) and card-based surfaces to create a sense of tangible quality. We employ a Bento-grid layout for vehicle specifications to ensure high data density remains digestible on mobile devices.
+   - Rationale: The Palestinian market requires a balance of high-tech feel (innovation) and reliability (trust), especially for high-value transactions like car sales.
+
+2. TYPOGRAPHY:
+   - Sans: 'Plus Jakarta Sans' provides a geometric, modern automotive aesthetic for English, while 'IBM Plex Sans Arabic' offers exceptional legibility and professional weight-matching for RTL layouts. This ensures a seamless transition between English and Arabic without layout shifts.
+   - Mono: 'JetBrains Mono' is used exclusively for technical vehicle specifications (VIN, engine displacement, mileage) and price displays (ILS ₪) to provide a structured, data-driven feel.
+
+3. COLOR SYSTEM:
+   - Brand Primary: A deep 'Trust Cobalt' (Hue 258) symbolizing stability and professionalism. It is high-contrast to ensure clarity in harsh outdoor lighting (typical for car browsing).
+   - Semantic Logic: Success colors (Emerald) are optimized for 'Verified Seller' badges and WhatsApp CTAs. Destructive colors (Ruby) are reserved for 'Sold' status and critical alerts.
+   - Mapping: --primary serves as the main brand anchor, while --accent provides a subtle highlight for hover states and active navigation, ensuring the interface feels responsive.
+
+4. USAGE GUIDE:
+   - Layout: Use a Centered Container (max-w-7xl) for the homepage and listing pages to maintain focus. Use full-width layouts for the Seller Dashboard.
+   - Effects: Implement `backdrop-blur-md` on the sticky navigation bar to maintain context while scrolling. Use `shadow-[0_1px_3px_rgba(0,0,0,0.1),0_1px_2px_rgba(0,0,0,0.06)]` for car cards to simulate a physical presence on the page.
+   - RTL Support: All spacing (mx, px, space-x) must use logical properties (ms, ps, space-s) to ensure the ILS currency and Arabic text align correctly.
+==========================================================================
+*/
+
+:root {
+  /* Typography */
+  --font-sans: "Plus Jakarta Sans", "IBM Plex Sans Arabic", system-ui, sans-serif;
+  --font-mono: "JetBrains+Mono", monospace;
+  
+  /* Radius */
+  --radius: 0.6rem;
+
+  /* Core UI Tokens */
+  --background: oklch(0.99 0.002 258);
+  --foreground: oklch(0.18 0.015 258);
+  --card: oklch(1.0 0 0);
+  --card-foreground: oklch(0.18 0.015 258);
+  --popover: oklch(1.0 0 0);
+  --popover-foreground: oklch(0.18 0.015 258);
+  --primary: oklch(0.35 0.12 258);
+  --primary-foreground: oklch(0.98 0.005 258);
+  --secondary: oklch(0.96 0.01 258);
+  --secondary-foreground: oklch(0.25 0.03 258);
+  --muted: oklch(0.96 0.005 258);
+  --muted-foreground: oklch(0.45 0.02 258);
+  --accent: oklch(0.94 0.02 258);
+  --accent-foreground: oklch(0.25 0.03 258);
+  --destructive: oklch(0.55 0.18 25);
+  --destructive-foreground: oklch(0.98 0.01 25);
+  --border: oklch(0.91 0.01 258);
+  --input: oklch(0.91 0.01 258);
+  --ring: oklch(0.35 0.12 258);
+  
+  /* Chart Tokens */
+  --chart-1: oklch(0.45 0.15 258);
+  --chart-2: oklch(0.65 0.12 180);
+  --chart-3: oklch(0.35 0.1 200);
+  --chart-4: oklch(0.75 0.14 60);
+  --chart-5: oklch(0.6 0.15 30);
+  
+  /* Sidebar Tokens */
+  --sidebar: oklch(0.98 0.005 258);
+  --sidebar-foreground: oklch(0.25 0.03 258);
+  --sidebar-primary: oklch(0.35 0.12 258);
+  --sidebar-primary-foreground: oklch(0.98 0.005 258);
+  --sidebar-accent: oklch(0.94 0.02 258);
+  --sidebar-accent-foreground: oklch(0.25 0.03 258);
+  --sidebar-border: oklch(0.91 0.01 258);
+  --sidebar-ring: oklch(0.35 0.12 258);
+}
+
+.dark {
+  --background: oklch(0.14 0.015 258);
+  --foreground: oklch(0.94 0.01 258);
+  --card: oklch(0.16 0.015 258);
+  --card-foreground: oklch(0.94 0.01 258);
+  --popover: oklch(0.16 0.015 258);
+  --popover-foreground: oklch(0.94 0.01 258);
+  --primary: oklch(0.62 0.12 258);
+  --primary-foreground: oklch(0.1 0.02 258);
+  --secondary: oklch(0.22 0.02 258);
+  --secondary-foreground: oklch(0.94 0.01 258);
+  --muted: oklch(0.22 0.02 258);
+  --muted-foreground: oklch(0.65 0.02 258);
+  --accent: oklch(0.25 0.03 258);
+  --accent-foreground: oklch(0.94 0.01 258);
+  --destructive: oklch(0.45 0.16 25);
+  --destructive-foreground: oklch(0.98 0.01 25);
+  --border: oklch(0.25 0.02 258);
+  --input: oklch(0.25 0.02 258);
+  --ring: oklch(0.62 0.12 258);
+  
+  /* Chart Tokens */
+  --chart-1: oklch(0.62 0.12 258);
+  --chart-2: oklch(0.55 0.15 180);
+  --chart-3: oklch(0.75 0.14 60);
+  --chart-4: oklch(0.65 0.18 280);
+  --chart-5: oklch(0.55 0.18 30);
+  
+  /* Sidebar Tokens */
+  --sidebar: oklch(0.12 0.015 258);
+  --sidebar-foreground: oklch(0.94 0.01 258);
+  --sidebar-primary: oklch(0.62 0.12 258);
+  --sidebar-primary-foreground: oklch(0.1 0.02 258);
+  --sidebar-accent: oklch(0.22 0.02 258);
+  --sidebar-accent-foreground: oklch(0.94 0.01 258);
+  --sidebar-border: oklch(0.22 0.02 258);
+  --sidebar-ring: oklch(0.62 0.12 258);
+}
+
+@theme inline {
+  /* Shadcn Core Mapping */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Charts Mapping */
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  /* Sidebar Mapping */
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Typography */
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+
+  /* Radius */
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    @apply scroll-smooth antialiased;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans min-h-screen;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight;
+  }
+
+  code, pre {
+    @apply font-mono;
+  }
+
+  ::selection {
+    @apply bg-primary/20 text-primary;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-muted-foreground/20 rounded-full hover:bg-muted-foreground/40;
+  }
+}
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=IBM+Plex+Sans&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --border: 214.3 31.8% 91.4%;
+  }
+
+  * {
+    @apply border-border;
+  }
+}
